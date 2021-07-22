@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Magic: The Gathering - Rulebook</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
+<script>
+    $(function () {
+        $.get('http://localhost:8080', function (res) {
+            var data = res.joinedChapterIndex
+            var chapter = res.joinedChapter
+            console.log(chapter)
+            var list = ''
+            for (i = 0; i < data.length; i++) {
+                list += `<dt><a href="#">${data[i].name}</a></dt>`
+                for (j = 0; j < data[i].chapters.length; j++) {
+                    list += `<dd><a href="#" class="chapter" number="${data[i].chapters[j].number}">${data[i].chapters[j].name}</a></dd>`
+                }
+            }
+            $("#contents").append(list);
+            // var rulebook = ''
+            // for (i = 0; i < data.length; i++) {
+            //     rulebook += `<h3 id="${data[i].number}">${data[i].name}</h3>`
+            //     for (j = 0; j < data[i].chapters.length; j++) {
+            //         rulebook += `<h4 id="${data[i].chapters[j].number}">${data[i].chapters[j].name}</h4>`
+            //         for (k = 0; k < (data[i].chapters[j].rule_index ? data[i].chapters[j].rule_index.length : 0); k++) {
+            //             rulebook += `<dt>${data[i].chapters[j].rule_index[k].name}</dt>`
+            //             for (l = 0; l < (data[i].chapters[j].rule_index[k].rules ? data[i].chapters[j].rule_index[k].rules.length : 0); l++) {
+            //                 rulebook += `<dd>${data[i].chapters[j].rule_index[k].rules[l]}</dd>`
+            //             }
+            //         }
+            //     }
+            // }
+            // $("#ruleBook").append(rulebook)
+
+            $("#contents").on('click', ".chapter", function () {
+                var chapter_number = $(this).attr("number")
+                var found = chapter.find(x => x.number == chapter_number)
+                var list = `<input type="text" id="search" placeholder="Search.."><h4>${found.name}</h4>`
+                for (i = 0; i < (found.rule_index ? found.rule_index.length : 0); i++) {
+                    list += `<dt class="ruleIndex">${found.rule_index[i].name}</dt>`
+                    for (j = 0; j < (found.rule_index[i].rules ? found.rule_index[i].rules.length : 0); j++) {
+                        list += `<dd class="rule">${found.rule_index[i].rules[j]}</dd>`
+                    }
+                }
+                list += "</ul>"
+                $("#rulesContents").html("").append(list)
+            })
+
+            $("#rulesContents").on("keyup", "#search", function () {
+                var value = $(this).val().toLowerCase();
+                $(".rule").filter(function () {
+                    $(".ruleIndex").toggle(value == 0)
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            })
+        })
+    });
+</script>
+
+<body>
+    <a id="backToTop" href="#firstHeading" title="Go to top">Back to top</a>
+    <div class="flexContainer">
+        <div class="profile">
+            <a href="https://www.linkedin.com/in/thang-vu-26a734180/" target="_blank"><img src="Thang.png"
+                    class="profilePic"></a>
+            <div class="profileInfo">
+                <a href="https://www.linkedin.com/in/thang-vu-26a734180/" target="_blank">LinkedIn Profile</a>
+                <br />
+                <a href="https://github.com" target="_blank">GitHub</a>
+            </div>
+        </div>
+        <div id="body">
+            <h1 id="firstHeading" class="heading"><i>Magic: The Gathering Comprehensive Rules</i></h1>
+            <div>
+                <div>These rules are effective as of April 22, 2021.</div>
+                <div>
+                    <p>This document is the ultimate authority for Magic: The Gathering® competitive game play. It
+                        consists
+                        of a
+                        series of numbered rules followed by a glossary. Many of the numbered rules are divided into
+                        subrules,
+                        and each separate rule and subrule of the game has its own number. (Note that subrules skip the
+                        letters
+                        "l" and "o" due to potential confusion with the numbers "1" and "0"; subrule 704.5k is followed
+                        by
+                        704.5m, then 704.5n, then 704.5p, for example.)
+
+                        Changes may have been made to this document since its publication. You can download the most
+                        recent
+                        version from the Magic rules website at Magic.Wizards.com/Rules. If you have questions, you can
+                        get
+                        the
+                        answers from us at Support.Wizards.com.</p>
+                </div>
+                <div class="flexContainer">
+                    <div id="contents">
+                        <h3 class="contents">Contents</h3>
+                    </div>
+                    <div id="rules">
+                        <h3 class="contents">Rules</h3>
+                        <div id="rulesContents"></div>
+                    </div>
+                </div>
+                <!-- <div id="ruleBook">
+                    <h2 class="heading">Rulebook</h2>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</body>

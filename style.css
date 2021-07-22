@@ -1,0 +1,63 @@
+#contents{
+    background-color: #F8F9FA;
+    border-style: solid;
+    border-width: thin;
+
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    font-size: 15px;
+    flex: 1
+}
+#rules{
+    background-color: #F8F9FA;
+    border-style: solid;
+    border-width: thin;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    margin-left: 10px;
+    flex: 2.5
+}
+.heading{
+    border-bottom: thin solid black;
+    margin-bottom: 0.25cm;
+}
+.contents{
+    text-align: center;
+}
+#body{
+    padding-left: 20px;
+    border-left: thin solid #A3D7F8;
+    padding-top: 20px;
+    padding-right: 20px;
+}
+.flexContainer{
+    display: flex;
+    flex-direction: row;
+}
+.profile{
+    background-color: #F6F6F6;
+}
+.profilePic{
+    width: 150px;
+    margin: 10px 5px 5px 5px;
+}
+.profileInfo{
+    margin-left: 10px;
+    font-size: 15px;
+}
+a { 
+    text-decoration: none; 
+}
+.collapsible {
+    padding: 0;
+    border: none;
+    background: none;
+}
+#backToTop {
+    position: fixed;
+    bottom: 20px;
+    left: 30px;
+
+}
