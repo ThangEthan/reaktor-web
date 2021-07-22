@@ -21,20 +21,6 @@
                 }
             }
             $("#contents").append(list);
-            // var rulebook = ''
-            // for (i = 0; i < data.length; i++) {
-            //     rulebook += `<h3 id="${data[i].number}">${data[i].name}</h3>`
-            //     for (j = 0; j < data[i].chapters.length; j++) {
-            //         rulebook += `<h4 id="${data[i].chapters[j].number}">${data[i].chapters[j].name}</h4>`
-            //         for (k = 0; k < (data[i].chapters[j].rule_index ? data[i].chapters[j].rule_index.length : 0); k++) {
-            //             rulebook += `<dt>${data[i].chapters[j].rule_index[k].name}</dt>`
-            //             for (l = 0; l < (data[i].chapters[j].rule_index[k].rules ? data[i].chapters[j].rule_index[k].rules.length : 0); l++) {
-            //                 rulebook += `<dd>${data[i].chapters[j].rule_index[k].rules[l]}</dd>`
-            //             }
-            //         }
-            //     }
-            // }
-            // $("#ruleBook").append(rulebook)
 
             $("#contents").on('click', ".chapter", function () {
                 var chapter_number = $(this).attr("number")
@@ -105,9 +91,6 @@
                         <div id="rulesContents"></div>
                     </div>
                 </div>
-                <!-- <div id="ruleBook">
-                    <h2 class="heading">Rulebook</h2>
-                </div> -->
             </div>
         </div>
     </div>
