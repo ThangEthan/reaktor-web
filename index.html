@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Magic: The Gathering - Rulebook</title>
     <link rel="stylesheet" href="style.css">
@@ -10,22 +9,23 @@
 <script>
     $(function () {
         $.get('http://localhost:8080', function (res) {
-            var data = res.joinedChapterIndex
-            var chapter = res.joinedChapter
-            console.log(chapter)
+            var data = res.joinedChapterIndex //A complete JSON structure of rule.txt
+            var chapter = res.joinedChapter //List of all chapters
+            //Generate table of contents
             var list = ''
             for (i = 0; i < data.length; i++) {
                 list += `<dt><a href="#">${data[i].name}</a></dt>`
                 for (j = 0; j < data[i].chapters.length; j++) {
-                    list += `<dd><a href="#" class="chapter" number="${data[i].chapters[j].number}">${data[i].chapters[j].name}</a></dd>`
+                    list += `<dd><a href="#" class="chapter" number="${data[i].chapters[j].number}">${data[i].chapters[j].name}</a></dd>` //number attr for later search function
                 }
             }
             $("#contents").append(list);
-
+            
             $("#contents").on('click', ".chapter", function () {
                 var chapter_number = $(this).attr("number")
-                var found = chapter.find(x => x.number == chapter_number)
+                var found = chapter.find(x => x.number == chapter_number) //Find chapter number according to the clicked element
                 var list = `<input type="text" id="search" placeholder="Search.."><h4>${found.name}</h4>`
+                //Generate found chapter
                 for (i = 0; i < (found.rule_index ? found.rule_index.length : 0); i++) {
                     list += `<dt class="ruleIndex">${found.rule_index[i].name}</dt>`
                     for (j = 0; j < (found.rule_index[i].rules ? found.rule_index[i].rules.length : 0); j++) {
@@ -35,12 +35,12 @@
                 list += "</ul>"
                 $("#rulesContents").html("").append(list)
             })
-
+            //Filter rules
             $("#rulesContents").on("keyup", "#search", function () {
-                var value = $(this).val().toLowerCase();
+                var search_text = $(this).val().toLowerCase();
                 $(".rule").filter(function () {
-                    $(".ruleIndex").toggle(value == 0)
-                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                    $(".ruleIndex").toggle(search_text == 0) //Hide rule indexs when search
+                    $(this).toggle($(this).text().toLowerCase().indexOf(search_text) > -1)
                 });
             })
         })
