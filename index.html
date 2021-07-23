@@ -11,6 +11,7 @@
     $(function () {
         $.get(`${env.API_URL}`, function (res) {
             var data = res.joinedChapterIndex //A complete JSON structure of rule.txt
+            console.log("I leave this JSON structure of the rule book here on purpose. " + data);
             var chapter = res.joinedChapter //List of all chapters
             //Generate table of contents
             var list = ''
@@ -57,7 +58,9 @@
             <div class="profileInfo">
                 <a href="https://www.linkedin.com/in/thang-vu-26a734180/" target="_blank">LinkedIn Profile</a>
                 <br />
-                <a href="https://github.com" target="_blank">GitHub</a>
+                <a href="https://github.com/ThangEthan/reaktor" target="_blank">Website GitHub</a><br>
+                <a href="https://github.com/ThangEthan/reaktorAPI" target="_blank">API GitHub</a><br>
+                <a href="https://github.com/ThangEthan/reaktor-kube" target="_blank">Kubenetes config file GitHub</a><br>
             </div>
         </div>
         <div id="body">
