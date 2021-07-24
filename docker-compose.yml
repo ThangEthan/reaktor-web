@@ -3,6 +3,6 @@ services:
     web:
         build: .
         environment: 
-            - API_URL: "http://reaktor-api-prod.eu-central-1.elasticbeanstalk.com/"
-    ports:
-        - "80:80"
+            - API_URL=http://reaktor-api-prod.eu-central-1.elasticbeanstalk.com/
+        ports:
+            - "80:80"
