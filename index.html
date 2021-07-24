@@ -11,7 +11,8 @@
     $(function () {
         $.get(`${env.API_URL}`, function (res) {
             var data = res.joinedChapterIndex //A complete JSON structure of rule.txt
-            console.log("I leave this JSON structure of the rule book here on purpose. " + data);
+            console.log("I leave this JSON structure of the rule book here on purpose.");
+            console.log(data)
             var chapter = res.joinedChapter //List of all chapters
             //Generate table of contents
             var list = ''
