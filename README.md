@@ -13,7 +13,7 @@ Here we go. Your task is to build an interactive, hyperlinked rulebook applicati
 # Documentation
 
 ### HTML
-1. API_URL read from the generated env.js file for a more dynamic behaviour.<br>
+1. API_URL is read from the generated env.js file for a more dynamic behaviour.<br>
 2. JQuery send GET request to the API server and recieved 2 JSON objects: data (JSON format of rules.txt), chapter (all chapter in JSON format).
 
 * data is used to render table of content and further inspection.
