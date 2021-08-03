@@ -1,3 +1,5 @@
+![DEMO](https://s6.gifyu.com/images/ezgif.com-video-to-gif-20e45878cc9bd6dac.gif)
+
 # Magic the Gathering assignment – Instructions
 
 Here we go. Your task is to build an interactive, hyperlinked rulebook application for a card game, of which rules are described in <a href="https://media.wizards.com/2021/downloads/MagicCompRules%2020210419.txt">rules.txt</a>.
@@ -8,7 +10,6 @@ Here we go. Your task is to build an interactive, hyperlinked rulebook applicati
 * Include a Table of Contents with hyperlinks to chapters containing game rules. For instance, “100. General” is a chapter
 * Display the selected chapter beside the Table of Contents, containing all rules in that chapter. For instance, “100.2a” is a rule
 * Include a search box for filtering the rules displayed on the page, so that you can, for instance, type “commander” and find all rules that mention the word “commander”
-
 
 # Documentation
 
