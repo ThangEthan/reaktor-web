@@ -19,7 +19,7 @@ Here we go. Your task is to build an interactive, hyperlinked rulebook applicati
 * data is used to render table of content and further inspection.
 * chapter is used to render rule when a chapter is clicked in table of content.
   
-3. Elements are rendered dynamically, thus, event has to attached using <a href="https://api.jquery.com/on/#on-events-selector-data-handler">.on()</a>
+3. Elements are rendered dynamically, thus, event has to be attached using <a href="https://api.jquery.com/on/#on-events-selector-data-handler">.on()</a>
 
 ### Docker
 1. Docker image use httpd as the base.
