@@ -26,7 +26,7 @@ Here we go. Your task is to build an interactive, hyperlinked rulebook applicati
 2. On start up startup.sh will be executed. startup.sh will write the passed API_URL environment variable into env.js. If API_URL is not set, image will not be able to run.
 
 ### Hosting
-Application is hosted by EB or ESK.
+Application is hosted in AWS using Elastic Beanstalk or Elastic Kubernetes Services.
 
 For EB run:
 ```bash
