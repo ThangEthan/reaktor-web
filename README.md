@@ -24,3 +24,16 @@ Here we go. Your task is to build an interactive, hyperlinked rulebook applicati
 ### Docker
 1. Docker image use httpd as the base.
 2. On start up startup.sh will be executed. startup.sh will write the passed API_URL environment variable into env.js. If API_URL is not set, image will not be able to run.
+
+### Hosting
+Application is hosted in AWS using Elastic Beanstalk or Elastic Kubernetes Services.
+
+For EB run:
+```bash
+eb init;
+eb create;
+eb deploy;
+```
+For EKS, YAML config file can be found <a href="https://github.com/ThangEthan/reaktor-kube/blob/master/web.yaml">here</a>.
+
+Although you may be served with unsecure http, https version of the application is available.
