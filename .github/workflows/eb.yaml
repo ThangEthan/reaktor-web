@@ -14,6 +14,10 @@ jobs:
     - name: Generate deployment package
       run: zip -r deploy.zip . -x '*.git*'
 
+    - name: Get current datetime
+      id: datetime
+      run: echo "::set-output name=date::$(date +'%H-%M-%d-%m-%Y')"
+
     - name: Deploy to EB
       uses: einaregilsson/beanstalk-deploy@v16
       with:
@@ -22,4 +26,5 @@ jobs:
         application_name: reaktor-web
         environment_name: reaktor-web-prod
         region: eu-central-1
+        version_label:  ${{ steps.datetime.outputs.date }}
         deployment_package: deploy.zip
