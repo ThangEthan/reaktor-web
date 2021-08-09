@@ -37,3 +37,6 @@ eb deploy;
 For EKS, YAML config file can be found <a href="https://github.com/ThangEthan/reaktor-kube/blob/master/web.yaml">here</a>.
 
 Although you may be served with unsecure http, https version of the application is available.
+
+### Auto deployment 
+Application will be automatically deploy to Elastic Beanstalk when new code is pused to master branch
