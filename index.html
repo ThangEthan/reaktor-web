@@ -16,7 +16,7 @@
             //Generate table of contents
             var list = ''
             for (i = 0; i < data.length; i++) {
-                list += `<dt><a href="#" class="chapterIndex" number="${data[i].number}">${data[i].name}</a></dt>`
+                list += `<dt><a href="#${data[i].number}" class="chapterIndex" number="${data[i].number}">${data[i].name}</a></dt>`
                 for (j = 0; j < data[i].chapters.length; j++) {
                     list += `<dd><a href="#${data[i].chapters[j].number}" class="chapter" number="${data[i].chapters[j].number}">${data[i].chapters[j].name}</a></dd>` //number attr for later search function
                 }
@@ -26,7 +26,7 @@
             $("#contents, #rulesContents").on('click', ".chapter", function () {
                 var chapter_number = $(this).attr("number")
                 var found = chapter.find(x => x.number == chapter_number) //Find chapter number according to the clicked element
-                var list = `<input type="text" id="search" placeholder="Search.."><h4 id="${found.number}">${found.name}</h4>`
+                var list = `<h4 id="${found.number}">${found.name}</h4> <input type="text" id="search" placeholder="Search..">`
                 //Generate found chapter
                 for (i = 0; i < (found.rule_index ? found.rule_index.length : 0); i++) {
                     list += `<dt class="ruleIndex" id="${found.rule_index[i].number}">${found.rule_index[i].name}</dt>`
