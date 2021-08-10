@@ -50,14 +50,12 @@
 a { 
     text-decoration: none; 
 }
-.collapsible {
-    padding: 0;
-    border: none;
-    background: none;
-}
 #backToTop {
     position: fixed;
     bottom: 20px;
     left: 30px;
 
+}
+#search {
+    margin-bottom: 15px;
 }
