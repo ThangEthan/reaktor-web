@@ -38,7 +38,7 @@
                 $("#rulesContents").html("").append(list)
                 //Replace "See rule" with a hyperlink
                 $("#rulesContents > dt, #rulesContents > dd").each(function() {
-                    $(this).html($(this).html().replace(/([sS]ee rules? ((\d+)(\.\d+[a-z]?)?))/g, '<a href=\"#$2\" class="chapter" number="$3">$1</a>'))
+                    $(this).html($(this).html().replace(/(([sS]ee )?rules? ((\d+)(\.\d+[a-z]?)?))/g, '<a href=\"#$3\" class="chapter" number="$4">$1</a>'))
                 })
             })
             //Filter rules
