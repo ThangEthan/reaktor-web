@@ -5,10 +5,10 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="env.js"></script>
+
 <script>
     $(function () {
-        $.get(`${env.API_URL}`, function (res) {
+        $.get(`https://reaktor-api.vvthang.com`, function (res) {
             var data = res.joinedChapterIndex //A complete JSON structure of rule.txt
             console.log("I leave this JSON structure of the rule book here on purpose.");
             console.log(data)
@@ -16,26 +16,30 @@
             //Generate table of contents
             var list = ''
             for (i = 0; i < data.length; i++) {
-                list += `<dt><a href="#">${data[i].name}</a></dt>`
+                list += `<dt><a href="#" class="chapterIndex" number="${data[i].number}">${data[i].name}</a></dt>`
                 for (j = 0; j < data[i].chapters.length; j++) {
                     list += `<dd><a href="#" class="chapter" number="${data[i].chapters[j].number}">${data[i].chapters[j].name}</a></dd>` //number attr for later search function
                 }
             }
             $("#contents").append(list);
             
-            $("#contents").on('click', ".chapter", function () {
+            $("#contents, #rulesContents").on('click', ".chapter", function () {
                 var chapter_number = $(this).attr("number")
                 var found = chapter.find(x => x.number == chapter_number) //Find chapter number according to the clicked element
-                var list = `<input type="text" id="search" placeholder="Search.."><h4>${found.name}</h4>`
+                var list = `<input type="text" id="search" placeholder="Search.."><h4 id="${found.number}">${found.name}</h4>`
                 //Generate found chapter
                 for (i = 0; i < (found.rule_index ? found.rule_index.length : 0); i++) {
-                    list += `<dt class="ruleIndex">${found.rule_index[i].name}</dt>`
+                    list += `<dt class="ruleIndex" id="${found.rule_index[i].number}">${found.rule_index[i].name}</dt>`
                     for (j = 0; j < (found.rule_index[i].rules ? found.rule_index[i].rules.length : 0); j++) {
-                        list += `<dd class="rule">${found.rule_index[i].rules[j]}</dd>`
+                        list += `<dd class="rule" id="${found.rule_index[i].rules[j].number}">${found.rule_index[i].rules[j].name}</dd>`
                     }
                 }
                 list += "</ul>"
                 $("#rulesContents").html("").append(list)
+                //Replace "See rule" with a hyperlink
+                $("#rulesContents > dt, #rulesContents > dd").each(function() {
+                    $(this).html($(this).html().replace(/([sS]ee rule ((\d+)(\.\d+[a-z]?)?))/, '<a href=\"#$2\" class="chapter" number="$3">$1</a>'))
+                })
             })
             //Filter rules
             $("#rulesContents").on("keyup", "#search", function () {
