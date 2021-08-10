@@ -8,7 +8,7 @@
 <script src="env.js"></script>
 <script>
     $(function () {
-        $.get(`https://reaktor-api.vvthang.com`, function (res) {
+        $.get(`${env.API_URL}`, function (res) {
             var data = res.joinedChapterIndex //A complete JSON structure of rule.txt
             console.log("I leave this JSON structure of the rule book here on purpose.");
             console.log(data)
@@ -38,7 +38,7 @@
                 $("#rulesContents").html("").append(list)
                 //Replace "See rule" with a hyperlink
                 $("#rulesContents > dt, #rulesContents > dd").each(function() {
-                    $(this).html($(this).html().replace(/([sS]ee rule ((\d+)(\.\d+[a-z]?)?))/, '<a href=\"#$2\" class="chapter" number="$3">$1</a>'))
+                    $(this).html($(this).html().replace(/([sS]ee rules? ((\d+)(\.\d+[a-z]?)?))/g, '<a href=\"#$2\" class="chapter" number="$2">$1</a>'))
                 })
             })
             //Filter rules
