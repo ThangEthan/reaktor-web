@@ -18,7 +18,7 @@
             for (i = 0; i < data.length; i++) {
                 list += `<dt><a href="#" class="chapterIndex" number="${data[i].number}">${data[i].name}</a></dt>`
                 for (j = 0; j < data[i].chapters.length; j++) {
-                    list += `<dd><a href="#" class="chapter" number="${data[i].chapters[j].number}">${data[i].chapters[j].name}</a></dd>` //number attr for later search function
+                    list += `<dd><a href="#${data[i].chapters[j].number}" class="chapter" number="${data[i].chapters[j].number}">${data[i].chapters[j].name}</a></dd>` //number attr for later search function
                 }
             }
             $("#contents").append(list);
