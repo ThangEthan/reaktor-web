@@ -5,10 +5,10 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
+<script src="env.js"></script>
 <script>
     $(function () {
-        $.get(`https://reaktor-api.vvthang.com`, function (res) {
+        $.get(`${env.API_URL}`, function (res) {
             var data = res.joinedChapterIndex //A complete JSON structure of rule.txt
             console.log("I leave this JSON structure of the rule book here on purpose.");
             console.log(data)
