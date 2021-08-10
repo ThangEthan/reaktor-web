@@ -59,3 +59,7 @@ a {
 #search {
     margin-bottom: 15px;
 }
+
+html {
+    scroll-behavior: smooth;
+}
