@@ -8,35 +8,36 @@
 <script src="env.js"></script>
 <script>
     $(function () {
-        $.get(`${env.API_URL}`, function (res) {
+        $.get(`${API_URL}`, function (res) {
             var data = res.joinedChapterIndex //A complete JSON structure of rule.txt
-            console.log("I leave this JSON structure of the rule book here on purpose.");
-            console.log(data)
             var chapter = res.joinedChapter //List of all chapters
-            //Generate table of contents
+            console.log("I leave this JSON structure of the rule book here on purpose.\n", data);
+
             var list = ''
-            for (i = 0; i < data.length; i++) {
-                list += `<dt><a href="#${data[i].number}" class="chapterIndex" number="${data[i].number}">${data[i].name}</a></dt>`
-                for (j = 0; j < data[i].chapters.length; j++) {
-                    list += `<dd><a href="#${data[i].chapters[j].number}" class="chapter" number="${data[i].chapters[j].number}">${data[i].chapters[j].name}</a></dd>` //number attr for later search function
-                }
-            }
+            //Generate table of contents
+            data.forEach(x => {
+                list += `<dt><a href="#${x.number}" class="chapterIndex" number="${x.number}">${x.name}</a></dt>` //Render chapter index
+                x.chapters.forEach(y => { 
+                    list += `<dd><a href="#${y.number}" class="chapter" number="${y.number}">${y.name}</a></dd>` //Rednder chapter
+                })
+            });
             $("#contents").append(list);
-            
+                        
             $("#contents, #rulesContents").on('click', ".chapter", function () {
                 var chapter_number = $(this).attr("number")
                 var found = chapter.find(x => x.number == chapter_number) //Find chapter number according to the clicked element
                 var list = `<h4 id="${found.number}">${found.name}</h4> <input type="text" id="search" placeholder="Search..">`
-                //Generate found chapter
-                for (i = 0; i < (found.rule_index ? found.rule_index.length : 0); i++) {
-                    list += `<dt class="ruleIndex" id="${found.rule_index[i].number}">${found.rule_index[i].name}</dt>`
-                    for (j = 0; j < (found.rule_index[i].rules ? found.rule_index[i].rules.length : 0); j++) {
-                        list += `<dd class="rule" id="${found.rule_index[i].rules[j].number}">${found.rule_index[i].rules[j].name}</dd>`
-                    }
-                }
+                //Render found chapter
+                found.rule_index.forEach(x => {
+                    list += `<dt class="ruleIndex" id="${x.number}">${x.name}</dt>` //Render rule index
+                    x.rules && x.rules.forEach(y => { //Render rules or do nothing if rule index doesn't contains rules
+                        list += `<dd class="rule" id="${y.number}">${y.name}</dd>`
+                    }) 
+                })
+
                 list += "</ul>"
                 $("#rulesContents").html("").append(list)
-                //Replace "See rule" with a hyperlink
+                //Create hyperlink between rules
                 $("#rulesContents > dt, #rulesContents > dd").each(function() {
                     $(this).html($(this).html().replace(/(([sS]ee )?rules? ((\d+)(\.\d+[a-z]?)?))/g, '<a href=\"#$3\" class="chapter" number="$4">$1</a>'))
                 })
