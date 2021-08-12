@@ -14,12 +14,13 @@ Here we go. Your task is to build an interactive, hyperlinked rulebook applicati
 # Documentation
 
 ### HTML
-1. API_URL is read from the generated env.js file for a more dynamic behaviour.<br>
+1. API_URL is read from the generated env.js file for a more dynamic behaviour.
 2. JQuery send GET request to the API server and recieved 2 JSON objects: data (JSON format of rules.txt), chapter (all chapter in JSON format).
 * data is used to render table of content and for further inspection.
 * chapter is used to render rule when a chapter is clicked in table of content.
-  
-3. Elements are rendered dynamically, thus, event has to be attached using <a href="https://api.jquery.com/on/#on-events-selector-data-handler">.on()</a>
+3. Elements are rendered dynamically. Each element has its own id, class, and attribute.
+4. Click event on dynamically rendered elements is attached using <a href="https://api.jquery.com/on/#on-events-selector-data-handler">.on()</a>. 
+5. Hyperlink between rule is created by replace specific pattern with an <a> tag. Click on these will anchor to the rule.
 
 ### Docker
 1. Docker image use httpd as the base.
