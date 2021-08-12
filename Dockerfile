@@ -1,4 +1,4 @@
-FROM httpd:2.4-alpine
+FROM httpd:zzzzz2.4
 
 WORKDIR /usr/local/apache2/htdocs/
 COPY . .
