@@ -20,7 +20,7 @@ Here we go. Your task is to build an interactive, hyperlinked rulebook applicati
 * chapter is used to render rule when a chapter is clicked in table of content.
 3. Elements are rendered dynamically. Each element has its own id, class, and attribute.
 4. Click event on dynamically rendered elements is attached using <a href="https://api.jquery.com/on/#on-events-selector-data-handler">.on()</a>. 
-5. Hyperlink between rule is created by replace specific pattern with an <a> tag. Click on these will anchor to the rule.
+5. Hyperlink between rule is created by replace specific pattern with an \<a\> tag. Click on these will anchor to the rule.
 
 ### Docker
 1. Docker image use httpd as the base.
