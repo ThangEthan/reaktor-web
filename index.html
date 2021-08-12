@@ -22,9 +22,9 @@
                 })
             });
             $("#contents").append(list);
-                        
+            //Click on element in table of content box and rules box share the same behavior          
             $("#contents, #rulesContents").on('click', ".chapter", function () {
-                var chapter_number = $(this).attr("number")
+                var chapter_number = $(this).attr("number") // Get attribute number of the clicked element
                 var found = chapter.find(x => x.number == chapter_number) //Find chapter number according to the clicked element
                 var list = `<h4 id="${found.number}">${found.name}</h4> <input type="text" id="search" placeholder="Search..">`
                 //Render found chapter
@@ -34,15 +34,15 @@
                         list += `<dd class="rule" id="${y.number}">${y.name}</dd>`
                     }) 
                 })
-
                 list += "</ul>"
-                $("#rulesContents").html("").append(list)
+
+                $("#rulesContents").html("").append(list) //Clear html content before append 
                 //Create hyperlink between rules
                 $("#rulesContents > dt, #rulesContents > dd").each(function() {
-                    $(this).html($(this).html().replace(/(([sS]ee )?rules? ((\d+)(\.\d+[a-z]?)?))/g, '<a href=\"#$3\" class="chapter" number="$4">$1</a>'))
+                    $(this).html($(this).html().replace(/(([sS]ee )?rules? ((\d+)(\.\d+[a-z]?)?))/g, '<a href=\"#$3\" class="chapter" number="$4">$1</a>')) //Replace pattern with a link. Anchor it to the rule
                 })
             })
-            //Filter rules
+            //Filter rule
             $("#rulesContents").on("keyup", "#search", function () {
                 var search_text = $(this).val().toLowerCase();
                 $(".rule").filter(function () {
