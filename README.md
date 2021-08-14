@@ -1,4 +1,4 @@
-![DEMO](https://s6.gifyu.com/images/ezgif.com-video-to-gif-20e45878cc9bd6dac.gif)
+![DEMO](https://s6.gifyu.com/images/final920261d1b4df5404.gif)
 
 # Magic the Gathering assignment – Instructions
 
