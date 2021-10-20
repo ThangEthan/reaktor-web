@@ -3,7 +3,7 @@ image:
   tag: latest
   pullPolicy: IfNotPresent
 ingress:
-  host: reaktor.192.168.49.2.nip.io
+  host: reaktor-web.192.168.49.2.nip.io
 env:
   API_URL: http://reaktor-api.192.168.49.2.nip.io
 service:
